@@ -20,7 +20,7 @@ class SettingsController extends Controller
        
         $data = Settings::find($id) ?? abort(404,'Ayar bulunamadı');
         if($request->hasFile('logo')){
-            $filename = 'logo.'.$request->logo->extension();
+            $filename = time().'logo.'.$request->logo->extension();
             $fileNameWithUpload = 'uploads/'.$filename;
 
             $request->logo->move(public_path('uploads'),$filename);
