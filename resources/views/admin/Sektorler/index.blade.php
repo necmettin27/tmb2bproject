@@ -12,6 +12,7 @@
              <table  class="table table-striped table-bordered table-hover display responsive nowrap mt-3" id="data">
                 <thead>
                   <tr>
+                    <th scope="col">id</th> 
                     <th scope="col">@lang('translate.baslik_tr')</th> 
                     <th scope="col">@lang('translate.baslik_en')</th> 
                     <th class="text-center">@lang('translate.firmasayisi')</th> 
@@ -22,6 +23,7 @@
                 <tbody>
                     @forelse($datas as $data)
                     <tr>
+                        <td>{{ $data->id }}</td>
                         <td>{{ $data->title_tr }}</td>
                         <td>{{ $data->title_en }}</td>
                         <td class="text-center">
