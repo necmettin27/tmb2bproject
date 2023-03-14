@@ -11,10 +11,11 @@ class logo extends Component
      * Create a new component instance.
      *
      * @return void
-     */ 
+     */  
+
     public function __construct()
     {
-       
+        
     }
 
     /**
@@ -23,8 +24,8 @@ class logo extends Component
      * @return \Illuminate\Contracts\View\View|\Closure|string
      */
     public function render()
-    { 
-        $logo = Settings::select(['logo'])->first();
+    {  
+        $logo = Settings::select(['logo'])->first(); 
         return view('components.logo',[
             'logo' => $logo
         ]);
