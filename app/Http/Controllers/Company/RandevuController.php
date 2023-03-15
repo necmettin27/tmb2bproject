@@ -133,8 +133,8 @@ class RandevuController extends Controller
            if($data !="" || $data !=null){
                
            }else{
-                $inactivesaat = ['1','2','3','4','5','6','7','8','9'];
-                 if($tarih == "25/11/2021" AND in_array($saatid, $inactivesaat)){
+                $inactivesaat = ['1','2','3','4','5','6'];
+                 if($tarih == "21/03/2023" AND in_array($saatid, $inactivesaat)){
                   
                 }else{
                      $saats.='<option value="'.$saat->id.'">'.$saat->saat.'</option>';
