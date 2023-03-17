@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CompanyUpdateRequest;
 use App\Models\User; 
-use App\Models\Sektorler; 
+use App\Models\Sektorler;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -39,6 +40,11 @@ class AuthController extends Controller
         $datas = $sektor->users()->where('status','1');
         if(request()->get('s')){
            $datas = $datas->where('companyname','LIKE','%'.request()->get('s').'%');
+        }
+        if(Auth::user()->status == 1){
+            $datas = $datas->where('status','1');
+        }else{
+            $datas = $datas->where('status','50');
         }
         $datas = $datas->paginate(20);
        return view('company.users.firmalar',compact('sektor','datas'));

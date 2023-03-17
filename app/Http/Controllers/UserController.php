@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Sektorler;
 use App\Http\Requests\CompanyUpdateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -34,6 +35,12 @@ class UserController extends Controller
         if(request()->get('s')){
            $datas = $datas->where('companyname','LIKE','%'.request()->get('s').'%');
         }
+        if(Auth::user()->status == 1){
+            $datas = $datas->where('status','1');
+        }else{
+            $datas = $datas->where('status','50');
+        }
+
         $datas = $datas->paginate(20);
        return view('user.firmalar.firmalar',compact('sektor','datas'));
     }
