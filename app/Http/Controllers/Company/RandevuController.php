@@ -86,7 +86,8 @@ class RandevuController extends Controller
 
     public function firmalar(Request $request)
     {
-        $datas = User::where('type','user')->where('status','1')->where('sector',$request->sektor);
+        $datas = User::where('type','user')->where('status','1');
+        $datas = $datas->where('sector',$request->sektor);
         if($request->ulke != "all"){
             $datas = $datas->where('country',$request->ulke);
         }

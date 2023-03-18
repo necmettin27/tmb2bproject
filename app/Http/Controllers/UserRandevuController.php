@@ -96,8 +96,10 @@ class UserRandevuController extends Controller
 
     public function firmalar(Request $request)
     {
+        //return $request;
         $datas = User::where('type','company')->where('status','1');
-        if($request->ulke != "all"){
+        $datas = $datas->where('sector',$request->sektor);
+        if($request->ulke != "all" && $request->has('ulke')){
             $datas = $datas->where('country',$request->ulke);
         }
         $datas = $datas->get();
