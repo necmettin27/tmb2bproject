@@ -5,71 +5,77 @@
     <h5 class="card-title">@lang('translate.hizlirandevual') </h5>
     <div class="card">
         <div class="card-body">
-            @if(auth()->user()->status == 1)
-            <form action="{{ route('companyrandevular.store') }}" method="POST">
-                @csrf
-                <div class="row">
-                    <div class="col-md-4 mb-3">
-                        <label>@lang('translate.grupsektor')</label>
-                        <select class="form-control" name="sektor" id="sektor" required>
-                            <option value="">@lang('translate.seciniz')</option>
-                            @foreach ( $sektorler as $sektor )
-                                <option value="{{ $sektor->id }}">
-                                @if(app()->getLocale()=="tr")
-                                {{ $sektor->title_tr }}
+            @if($settings->status == 1)
+                @if(auth()->user()->status == 1)
+                <form action="{{ route('companyrandevular.store') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label>@lang('translate.grupsektor')</label>
+                            <select class="form-control" name="sektor" id="sektor" required>
+                                <option value="">@lang('translate.seciniz')</option>
+                                @foreach ( $sektorler as $sektor )
+                                    <option value="{{ $sektor->id }}">
+                                    @if(app()->getLocale()=="tr")
+                                    {{ $sektor->title_tr }}
+                                    @else
+                                    {{ $sektor->title_en }}
+                                    @endif
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>@lang('translate.country')</label>
+                            <select class="form-control" name="ulke" id="ulke" required>
+                                <option value="">@lang('translate.seciniz')</option>
+                                <option value="all">@lang('translate.tumu')</option>
+                                @foreach ( $ulkeler as $ulke )
+                                @if(app()->isLocale('tr'))
+                                    <option value="{{ $ulke->id }}">{{ $ulke->name }}</option>
                                 @else
-                                {{ $sektor->title_en }}
+                                <option value="{{ $ulke->id }}">{{ $ulke->name_en }}</option>
                                 @endif
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label>@lang('translate.country')</label>
-                        <select class="form-control" name="ulke" id="ulke" required>
-                            <option value="">@lang('translate.seciniz')</option>
-                            <option value="all">@lang('translate.tumu')</option>
-                            @foreach ( $ulkeler as $ulke )
-                            @if(app()->isLocale('tr'))
-                                <option value="{{ $ulke->id }}">{{ $ulke->name }}</option>
-                            @else
-                             <option value="{{ $ulke->id }}">{{ $ulke->name_en }}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label>@lang('translate.tarih')</label>
-                        <input type="text" name="date" id="randevutarih" class="form-control" required>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label>@lang('translate.firmalar')</label>
-                        <select class="form-control" name="company" id="company" required>
-                            <option value="">@lang('translate.seciniz')</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label>@lang('translate.firmayetkilileri')</label>
-                        <select class="form-control" name="company_user" id="company_user" required>
-                            <option value="">@lang('translate.seciniz')</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label>@lang('translate.randevusaati')</label>
-                        <select class="form-control" name="time" id="randetime" required>
-                            <option value="">@lang('translate.seciniz')</option>
-                        </select>
-                    </div>
-                    <div class="col-md-12 text-right mb-3">
-                        <button class="btn btn-primary">@lang('translate.randevuekle')</button>
-                    </div>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>@lang('translate.tarih')</label>
+                            <input type="text" name="date" id="randevutarih" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>@lang('translate.firmalar')</label>
+                            <select class="form-control" name="company" id="company" required>
+                                <option value="">@lang('translate.seciniz')</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>@lang('translate.firmayetkilileri')</label>
+                            <select class="form-control" name="company_user" id="company_user" required>
+                                <option value="">@lang('translate.seciniz')</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label>@lang('translate.randevusaati')</label>
+                            <select class="form-control" name="time" id="randetime" required>
+                                <option value="">@lang('translate.seciniz')</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 text-right mb-3">
+                            <button class="btn btn-primary">@lang('translate.randevuekle')</button>
+                        </div>
 
+                    </div>
+                </form>
+                @else
+                <div class="alert alert-info">
+                    @lang('translate.hesaponaylanmadi')
                 </div>
-            </form>
+                @endif
             @else
-            <div class="alert alert-info">
-                @lang('translate.hesaponaylanmadi')
-            </div>
+                <div class="alert alert-info">
+                    @lang('translate.randevualimlaribaslamadi')
+                </div>
             @endif
         </div>
     </div>

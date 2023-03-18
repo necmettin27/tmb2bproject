@@ -5,6 +5,7 @@
     <h5 class="card-title">@lang('translate.hizlirandevual') </h5>
     <div class="card">
         <div class="card-body">
+            @if($settings->status == 1)
             @if(auth()->user()->status == 1)
             <form action="{{ route('randevular.store') }}" method="POST">
                 @csrf
@@ -70,6 +71,11 @@
             @else
             <div class="alert alert-info">
                 @lang('translate.hesaponaylanmadi')
+            </div>
+            @endif
+            @else
+            <div class="alert alert-info">
+                @lang('translate.randevualimlaribaslamadi')
             </div>
             @endif
         </div>

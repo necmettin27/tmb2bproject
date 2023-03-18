@@ -83,4 +83,5 @@
         'profilduzenlemenu'=>'Edit Profile',
         'cikisyap'=>'Log out',
         'alinmisrandevuyok'=>' You do not have an appointment made.',
+        'randevualimlaribaslamadi' => 'Appointments Haven\'t Started'
     ];

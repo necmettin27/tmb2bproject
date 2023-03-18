@@ -84,4 +84,5 @@
         'profilduzenlemenu'=>'Profil Düzenle',
         'cikisyap'=>'Çıkış Yap',
         'alinmisrandevuyok'=>' Alınmış randevunuz bulunmamaktadır.',
+        'randevualimlaribaslamadi' => 'Randevu Alımları Başlamadı',
     ];
