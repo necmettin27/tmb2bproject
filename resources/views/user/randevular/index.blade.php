@@ -5,6 +5,20 @@
     <h5 class="card-title">@lang('translate.hizlirandevual') </h5>
     <div class="card">
         <div class="card-body">
+            <div class="alert alert-info">
+                <p>
+                    Türkiye’ den Katılım Sağlayan, İmalatçı, İhtalatçı ve İhracatçı firmalarımızın dikkatine;<br/> 
+                    1) Kullanmış Olduğunuz bu sistem ( B2B) eşleştirme sistemidir. <br/>
+                    2) Bu Sistem içerisinde sadece Türk (Yerli) katılıcılarımız randevu oluşturabilir. <br/>
+                    3) Oluşturduğunuz randevular Afrika’ dan gelen ziyaretçilerimize Mail ve Matbuu Form olarak iletilir. <br/>
+                    4) Afrika Kıta’ sından (41 Ülke’den) gelen ziyaretçilerimize bu randevulara riayet etmesi tavsiye ve rica edilir. <br/>
+                    5)  Afrika Kıtası’ ndan gelen Ziyaretçilerimiz görüşemeler esnasında, farklı bir firma ile görüşme yapabilir. <br/>
+                    6) Afrika Kıtasından gelen Ziyaretçilerimiz masalardaki görüşmelerini olması gerekenden daha uzun tutabilir <br/>
+                    7) Siz Kıymetli Türk Firmalarımız da. Sizinle ilgili olduğunu gözlemlediğiniz Afrikalı Ziyaretçilerimizi masanıza davet edebilirsiniz <br/>
+                    Teşekkür ederiz. <br/>
+                    WCI FORUM
+                </p>
+            </div>
             @if($settings->status == 1)
             @if(auth()->user()->status == 1)
             <form action="{{ route('randevular.store') }}" method="POST">
