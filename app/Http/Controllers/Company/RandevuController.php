@@ -134,7 +134,7 @@ class RandevuController extends Controller
            if($data !="" || $data !=null){
                
            }else{
-                $inactivesaat = ['1','2','3','4','5','6'];
+                $inactivesaat = ['1','2','3'];
                  if($tarih == "21/03/2023" AND in_array($saatid, $inactivesaat)){
                   
                 }else{
