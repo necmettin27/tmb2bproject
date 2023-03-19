@@ -17,9 +17,7 @@
                     <p>
                         <span class="font-bold">@lang('translate.website'): </span>{{ $data->website }}
                     </p>
-                    <p>
-                        <span class="font-bold">@lang('translate.email'): </span>{{ $data->email }}
-                    </p>
+                   
                     <p>
                         <span class="font-bold">@lang('translate.ulke'): </span>{{ $data->GetUlke->name }}
                     </p>

@@ -19,8 +19,9 @@
                 <tr>
                   <th>@lang('translate.companyname')</th>  
                   <th>@lang('translate.name')</th>  
-                  <th>@lang('translate.email')</th>  
+                  
                   <th class="text-left">@lang('translate.ulke')</th> 
+                  <th class="text-left">#</th> 
                  
                 </tr>
               </thead>
@@ -29,7 +30,7 @@
                   <tr>
                       <td scope="row"><a href="{{route('user.firmalardetay',$data->id)}}" style="text-decoration: none;color:black;">{{ $data->companyname }}</a></td> 
                       <td scope="row">{{ $data->name }}</td> 
-                      <td scope="row">{{ $data->email }}</td> 
+                    
                       <td scope="row">
                         @if(app()->isLocale('tr'))
                         {{ $data->getUlke->name }}
@@ -37,6 +38,9 @@
                          {{ $data->getUlke->name_en }}
                         @endif
                       </td> 
+                      <td>
+                        <a href="{{route('user.firmalardetay',$data->id)}}" class="btn btn-success btn-sm">Detay</a>
+                      </td>
  
                   </tr> 
                 @empty

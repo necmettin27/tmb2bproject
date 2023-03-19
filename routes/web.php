@@ -64,7 +64,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('sektorler','UserController@sektorler')->name('user.sektorler');
         Route::get('sektorler/{id}/firmalar','UserController@firmalar')->name('user.firmalar');
-        Route::get('firmalar/{id}/firma','UserController@firmadetay')->name('user.firmalardetay');
+        Route::get('firmalar/{id}/firmadetay','UserController@firmadetay')->name('user.firmalardetay');
     });
 });
 
@@ -94,9 +94,9 @@ Route::group(['middleware'=>['auth','company'],'prefix'=>'company'],function(){
 
     Route::get('export/randevular','ExportRandevularController@exportcompany')->name('company.randevuexport');
 
-    Route::get('sektorler','Company\AuthController@sektorler')->name('user.sektorler');
-    Route::get('sektorler/{id}/firmalar','Company\AuthController@firmalar')->name('user.firmalar');
-    Route::get('firmalar/{id}/firma','Company\AuthController@firmadetay')->name('user.firmalardetay');
+    Route::get('sektorler','Company\AuthController@sektorler')->name('company.sektorler');
+    Route::get('sektorler/{id}/firmalar','Company\AuthController@firmalar')->name('company.firmalar');
+    Route::get('firmalar/{id}/firmadetay','Company\AuthController@firmadetay')->name('company.firmalardetay');
 
 });
 
