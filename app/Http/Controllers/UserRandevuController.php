@@ -98,13 +98,17 @@ class UserRandevuController extends Controller
     {
         //return $request;
         $datas = User::where('type','company')->where('status','1');
-        $datas = $datas->where('sector',$request->sektor);
-
-        $sektor = Sektorler::whereId($request->sektor)->first(); 
-        $sektorname = $sektor->title_tr;
-        if($sektor){
-            $datas = $datas->where('companydesciption','LIKE','%'.$sektorname.'%');  
-        } 
+        $sektor = $request->sektor;
+        $sektorAdi = Sektorler::whereId($request->id)->first();
+        $sektorAditr = $sektorAdi->title_tr;
+        $sektorAdien = $sektorAdi->title_en;
+        $datas = $datas->where(function($q) use ($sektor,$sektorAditr,$sektorAdien){
+            $q = $q->where('sector',$sektor);
+            $q = $q->orWhere('companydesciption','LIKE','%'.$sektorAditr.'%');
+            $q = $q->orWhere('companydesciption','LIKE','%'.$sektorAdien.'%');
+            $q = $q->orWhere('companydesciption','LIKE','%GENEL TİCARET%');
+            $q = $q->orWhere('companydesciption','LIKE','%GENERAL TRADE%');
+        });
         
         if($request->ulke != "all" && $request->has('ulke')){
             $datas = $datas->where('country',$request->ulke);
