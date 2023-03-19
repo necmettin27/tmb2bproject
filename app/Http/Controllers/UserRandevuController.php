@@ -99,7 +99,7 @@ class UserRandevuController extends Controller
         //return $request;
         $datas = User::where('type','company')->where('status','1');
         $sektor = $request->sektor;
-        $sektorAdi = Sektorler::whereId($request->id)->first();
+        $sektorAdi = Sektorler::whereId($request->sektor)->first();
         $sektorAditr = $sektorAdi->title_tr;
         $sektorAdien = $sektorAdi->title_en;
         $datas = $datas->where(function($q) use ($sektor,$sektorAditr,$sektorAdien){
