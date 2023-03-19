@@ -31,7 +31,8 @@ class UserController extends Controller
     public function firmalar($sektor_id)
     {
         $sektor = Sektorler::whereId($sektor_id)->where('status','1')->first() ?? abort(404,'Sektör Bulunamadı');
-        $datas = $sektor->firmalar();
+
+        $datas = User::where('type','company')->where('status','1');
         if(request()->get('s')){
            $datas = $datas->where('companyname','LIKE','%'.request()->get('s').'%');
         }
@@ -40,6 +41,15 @@ class UserController extends Controller
         }else{
             $datas = $datas->where('status','50');
         }
+        $sektorAditr = $sektor->title_tr;
+        $sektorAdien = $sektor->title_en;
+        $datas = $datas->where(function($q) use ($sektor,$sektorAditr,$sektorAdien){
+            $q = $q->where('sector',$sektor);
+            $q = $q->orWhere('companydesciption','LIKE','%'.$sektorAditr.'%');
+            $q = $q->orWhere('companydesciption','LIKE','%'.$sektorAdien.'%');
+            $q = $q->orWhere('companydesciption','LIKE','%GENEL TİCARET%');
+            $q = $q->orWhere('companydesciption','LIKE','%GENERAL TRADE%');
+        });
 
         $datas = $datas->paginate(20);
        return view('user.firmalar.firmalar',compact('sektor','datas'));
