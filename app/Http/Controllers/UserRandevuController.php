@@ -99,6 +99,13 @@ class UserRandevuController extends Controller
         //return $request;
         $datas = User::where('type','company')->where('status','1');
         $datas = $datas->where('sector',$request->sektor);
+
+        $sektor = Sektorler::whereId($request->sektor)->first(); 
+        $sektorname = $sektor->title_tr;
+        if($sektor){
+            $datas = $datas->where('companydesciption','LIKE','%'.$sektorname.'%');  
+        } 
+        
         if($request->ulke != "all" && $request->has('ulke')){
             $datas = $datas->where('country',$request->ulke);
         }
