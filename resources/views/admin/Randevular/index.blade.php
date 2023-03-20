@@ -36,8 +36,8 @@
                             @endif
                         >
                           <td width="5%">{{ $randevu->id }}</td>
-                          <td width="20%"><a style="color:white;" href="{{route('randevuyonetimi.ozelliste',$randevu->TalepEdenUser->id)}}">{{ $randevu->TalepEdenUser->companyname }}</a></td>
-                          <td width="20%"><a style="color:white;" href="{{route('randevuyonetimi.ozelliste',$randevu->GelenUser->id)}}">{{ $randevu->GelenUser->companyname }}</a></td>
+                          <td width="20%"><a style="color:white;" href="{{route('randevuyonetimi.ozelliste',$randevu->TalepEdenUser->id)}}">{{ $randevu->TalepEdenUser->companyname }} <br/>{{ $randevu->TalepEdenUser->name }}</a></td>
+                          <td width="20%"><a style="color:white;" href="{{route('randevuyonetimi.ozelliste',$randevu->GelenUser->id)}}">{{ $randevu->GelenUser->companyname }}<br/> {{ $randevu->GelenUser->name }}</a></td>
                           <td width="10%">{{ $randevu->gorusme_tarih }}</td>
                           <td width="10%">{{ $randevu->Getsaat->saat }}</td>
                           <td width="7%">
