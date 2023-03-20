@@ -9,17 +9,19 @@
         </div>
          <div class="ibox-content">
            <a href="{{ route('export.randevular') }}" class="btn btn-primary"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Excel</a>
+           <a onclick="printDiv('printableArea')" href="javascript:void(0)"  class="btn btn-primary">Yazdır</a>
            <a href="{{ route('randevuyonetimi.create') }}" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Yeni Randevu Ekle</a>
+           <div id="printableArea">
            <table class="table table-striped table-bordered table-hover display responsive nowrap mt-3">
                 <thead>
                   <tr>
-                    <th width="3">İd</th> 
+                    <th width="3"  class="printdisable">İd</th> 
                     <th width="30%">Görüşme Yapan</th> 
                     <th width="30%">Görüşme Gelen</th>   
                     <th>Tarih</th> 
                     <th>Saat</th> 
                     <th>G.Alan</th>  
-                    <th>İşlemler</th>
+                    <th class="printdisable">İşlemler</th>
                   </tr>
                 </thead>
                 <tbody> 
@@ -48,7 +50,7 @@
                           
                              
 
-                            <td width="15%" class="text-center">
+                            <td width="15%" class="text-center printdisable">
                                   
                                 <a onclick="return confirm('Veriniz silinecek. Onaylıyor musunuz?')" href="{{ route('randevuyonetimi.destroy',$randevu->id) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                             </td>
@@ -62,9 +64,41 @@
                     @endforelse
                 </tbody>
               </table>
+            </div>
          </div>
     </div>
 @endsection
  
 
   
+@section('css')
+<style>
+     @media print {
+        .printdisable{
+            visibility: hidden;
+        }
+        #printableArea{
+            font-size: 12px;
+            color:black;
+        }
+        td {
+            color:black !important;
+        }
+        a{
+            color:black !important;
+            text-decoration: none !important;
+        }
+    }
+</style>
+@endsection
+@section('js')
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+</script>
+@endsection
