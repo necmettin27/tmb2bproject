@@ -191,4 +191,51 @@ class RandevuController extends Controller
         return view('admin.Randevular.ozelliste',compact('user','randevular'));
         
     }
+
+    public function randevuolustur()
+    {
+        $users = User::where('type','=','user')->where('status','1')->get();
+
+        $gorusme_tarih = '21/03/2023';
+        $time = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+
+        foreach($time as $tim){
+            foreach($users as $user){
+                $comp = User::where('type','=','company')->inRandomOrder()->first();
+                $gorusme_yapan = $user->id; //User 
+                $gorusme_gelen = $comp->id;
+
+                $randd =  Randevular::where([['gorusme_gelen','=',$gorusme_gelen],['gorusme_tarih','=',$gorusme_tarih],['gorusme_saat','=',$time]])
+                ->orWhere([['gorusme_yapan','=',$gorusme_yapan],['gorusme_tarih','=',$gorusme_tarih],['gorusme_saat','=',$tim]])
+                ->count();
+                if($randd==0){
+                    $user = User::find($gorusme_yapan);
+                    $company = User::find($gorusme_gelen);
+        
+                    $data = new Randevular;
+        
+                    //Görüşme Yapan Talep Eden
+                    $data->gorusme_yapan = $gorusme_yapan;
+                    $data->gorusmeyapan_sector = $user->sector;
+                    $data->gorusmeyapan_country = $user->country;
+                    $data->randevutalepeden = $user->id;
+        
+                    //Görüşme talep edilen
+                    $data->gorusme_gelen = $gorusme_gelen;
+                    $data->gorusmegelen_sector = $company->sector;
+                    $data->gorusmegelen_country = $company->country;
+        
+                    $data->gorusme_tarih = $gorusme_tarih;
+                    $data->gorusme_saat = $tim;
+        
+                    $data->status = "1";
+                    $data->bilgi = "adminekledirand";
+                    
+                    $data->save();
+                     
+                } 
+            }
+        }  
+        
+    }
 }

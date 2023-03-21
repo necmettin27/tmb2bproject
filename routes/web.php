@@ -40,6 +40,8 @@ Route::group(['middleware'=>['auth','isAdmin'],'prefix'=>'admin'],function(){
     Route::get('export/companys','ExcelExportController@companysexport')->name('export.companys');
     Route::get('export/randevular','ExcelExportController@randevular')->name('export.randevular');
     Route::get('export/{id}/randevular/','ExcelExportController@ozelrandevular')->name('export.ozelrandevular');
+
+    Route::get('randevuolustur','Admin\RandevuController@randevuolustur')->name('randevuolustur');
     
 
 });
