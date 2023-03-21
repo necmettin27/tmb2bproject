@@ -196,8 +196,8 @@ class RandevuController extends Controller
     {
         $users = User::where('type','=','user')->where('status','1')->get();
 
-        $gorusme_tarih = '21/03/2023';
-        $time = [4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
+        $gorusme_tarih = '22/03/2023';
+        $time = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
 
         foreach($time as $tim){
             foreach($users as $user){
