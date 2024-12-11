@@ -1,4 +1,4 @@
 <a href="/">
-    <img src="{{ asset($logo->logo ?? "uploads/1678725006logo.png") }}" style="max-width: 450px;">
+    <img src="{{ url('https://visitego.com/visitegoLogo/favicon.png') }}" style="max-width: 450px;">
  </a>
- 
+
